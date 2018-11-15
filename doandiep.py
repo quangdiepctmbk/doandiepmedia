@@ -24,8 +24,8 @@ addons_folder = xbmc.translatePath('special://home/addons')
 image = xbmc.translatePath(os.path.join(path, "icon.png"))
 
 plugin = Plugin()
-addon = xbmcaddon.Addon("plugin.video.tranhuyhoang.playlist")
-pluginrootpath = "plugin://plugin.video.tranhuyhoang.playlist"
+addon = xbmcaddon.Addon("plugin.video.HieuHien.vn")
+pluginrootpath = "plugin://plugin.video.HieuHien.vn"
 http = httplib2.Http(cache, disable_ssl_certificate_validation=True)
 query_url = "https://docs.google.com/spreadsheets/d/{sid}/gviz/tq?gid={gid}&headers=1&tq={tq}"
 sheet_headers = {
@@ -35,7 +35,7 @@ sheet_headers = {
 
 
 def GetSheetIDFromSettings():
-	sid = "1WLEbNUt65Rv_gDPJ57N_pKxl49OoY2Y5TI8q0CZQYro"
+	sid = "1rFom1XNieCQAmmhNR7t-JyRDushJWC3qkMfZ5oQnBgM"
 	resp, content = http.request(plugin.get_setting("GSheetURL"), "HEAD")
 	try:
 		sid = re.compile("/d/(.+?)/").findall(resp["content-location"])[0]
@@ -46,7 +46,7 @@ def GetSheetIDFromSettings():
 
 def M3UToItems(url_path=""):
 	'''
-	Hàm chuyển đổi m3u playlist sang xbmcswift2 items
+	Hàm chuyển đổi  m3u playlist sang xbmcswift2 items
 	Parameters
 	----------
 	url_path : string
@@ -175,9 +175,9 @@ def getItems(url_path="0", tq="select A,B,C,D,E"):
 		if "plugin://" in item["path"]:
 			if "install-repo" in item["path"]:
 				item["is_playable"] = False
-			elif re.search("plugin.video.tranhuyhoang.playlist/(.+?)/.+?\://", item["path"]):
+			elif re.search("plugin.video.HieuHien.vn/(.+?)/.+?\://", item["path"]):
 				match = re.search(
-					"plugin.video.tranhuyhoang.playlist(/.+?/).+?\://", item["path"])
+					"plugin.video.HieuHien.vn(/.+?/).+?\://", item["path"])
 				tmp = item["path"].split(match.group(1))
 				tmp[-1] = urllib.quote_plus(tmp[-1])
 				item["path"] = match.group(1).join(tmp)
@@ -195,7 +195,7 @@ def getItems(url_path="0", tq="select A,B,C,D,E"):
 			item["path"] = pluginrootpath + "/executebuiltin/-"
 		else:
 			if "spreadsheets/d/" in item["path"]:
-				# https://docs.google.com/spreadsheets/d/1WLEbNUt65Rv_gDPJ57N_pKxl49OoY2Y5TI8q0CZQYro/edit#gid=0
+				# https://docs.google.com/spreadsheets/d/1zL6Kw4ZGoNcIuW9TAlHWZrNIJbDU5xHTtz-o8vpoJss/edit#gid=0
 				match_cache = re.search('cache=(.+?)($|&)', item["path"])
 				match_passw = re.search('passw=(.+?)($|&)', item["path"])
 
@@ -232,67 +232,56 @@ def getItems(url_path="0", tq="select A,B,C,D,E"):
 				# https://www.youtube.com/channel/UC-9-kyTW8ZkZNDHQJ6FgpwQ
 				yt_route = "ytcp" if "playlists" in item["path"] else "ytc"
 				yt_cid = re.compile("youtube.com/channel/(.+?)$").findall(item["path"])[0]
-				item["path"] = "plugin://plugin.video.kodi4vn.launcher/%s/%s/" % (
-					yt_route, yt_cid)
-				item["path"] = item["path"].replace("/playlists", "")
+				item["path"] = "plugin://plugin.video.youtube/channel/%s/" % yt_cid
 			elif "youtube.com/playlist" in item["path"]:
 				# https://www.youtube.com/playlist?list=PLFgquLnL59alCl_2TQvOiD5Vgm1hCaGSI
 				yt_pid = re.compile("list=(.+?)$").findall(item["path"])[0]
-				item["path"] = "plugin://plugin.video.kodi4vn.launcher/ytp/%s/" % yt_pid
-			elif any(ext in item["path"] for ext in [".png", ".jpg", ".bmp", ".jpeg"]):
-				item["path"] = "plugin://plugin.video.kodi4vn.launcher/showimage/%s/" % urllib.quote_plus(
-					item["path"])
-			elif re.search("\.ts$", item["path"]):
-				item["path"] = "plugin://plugin.video.f4mTester/?url=%s&streamtype=TSDOWNLOADER&use_proxy_for_chunks=True&name=%s" % (
-					urllib.quote(item["path"]),
-					urllib.quote_plus(item["label"])
-				)
-				item["path"] = pluginrootpath + \
-					"/executebuiltin/" + urllib.quote_plus(item["path"])
-			else:
+				item["path"] = "plugin://plugin.video.youtube/playlist/%s/" % yt_pid
+			else:		
 				# Nếu là direct link thì route đến hàm play_url
 				item["is_playable"] = True
 				item["path"] = pluginrootpath + "/play/" + urllib.quote_plus(item["path"])
 		if item["label2"].startswith("http"):
 			item["path"] += "?sub=" + urllib.quote_plus(item["label2"].encode("utf8"))
 		items += [item]
-	#if url_path == "0":
-	#	add_playlist_item  = {
-	#		"context_menu": [
-	#			ClearPlaylists(""),
-	#		],
-	#		"label":"[COLOR yellow]cám ơn các bạn đã ủng hộ[/COLOR]",
-	#		"path": "%s/add-playlist" % (pluginrootpath),
-	#		"thumbnail": "http://userscontent2.emaze.com/images/5bc10631-6b26-4d3a-a56f-bd68522f965c/Slide21_Pic1_636000467320479770.png"
-	#	}
-	#	items += [add_playlist_item]
-	#	playlists = plugin.get_storage('playlists')
-	#	if 'sections' in playlists:
-	#		for section in playlists['sections']:
-	#			item = {
-	#				"context_menu": [
-	#					ClearPlaylists(section),
-	#				]
-	#			}
-	#			if "@@" in section:
-	#				tmp     = section.split("@@")
-	#				passw   = tmp[-1]
-	#				section = tmp[0]
-	#				item["label"] = section
-	#				item["path"]  = "%s/password-section/%s/%s" % (
-	#					pluginrootpath,
-	#					passw,
-	#					section.split("] ")[-1]
-	#				)
-	#			else:
-	#				item["label"] = section
-	#				item["path"]  = "%s/section/%s" % (
-	#					pluginrootpath,
-	#					section.split("] ")[-1]
-	#				)
-	#			item["thumbnail"] = "http://1.bp.blogspot.com/-gc1x9VtxIg0/VbggLVxszWI/AAAAAAAAANo/Msz5Wu0wN4E/s1600/playlist-advertorial.png"
-	#			items.append(item)
+	if url_path == "0":
+		add_playlist_item = {
+			"context_menu": [
+				ClearPlaylists(""),
+			],
+			"label": "[COLOR yellow]*** Thêm Playlist ***[/COLOR]",
+			"path": "%s/add-playlist" % (pluginrootpath),
+			"thumbnail": "http://1.bp.blogspot.com/-gc1x9VtxIg0/VbggLVxszWI/AAAAAAAAANo/Msz5Wu0wN4E/s1600/playlist-advertorial.png"
+		}
+		items += [add_playlist_item]
+		playlists = plugin.get_storage('playlists')
+		if 'sections' in playlists:
+			for section in playlists['sections']:
+				item = {
+					"context_menu": [
+						ClearPlaylists(section),
+					]
+				}
+				if "@@" in section:
+					tmp = section.split("@@")
+					passw = tmp[-1]
+					section = tmp[0]
+					item["label"] = section
+					item["path"] = "%s/password-section/%s/%s" % (
+						pluginrootpath,
+						passw,
+						section.split("] ")[-1]
+					)
+				else:
+					item["label"] = section
+					item["path"] = "%s/section/%s" % (
+						pluginrootpath,
+						section.split("] ")[-1]
+					)
+				item["thumbnail"] = "http://1.bp.blogspot.com/-gc1x9VtxIg0/VbggLVxszWI/AAAAAAAAANo/Msz5Wu0wN4E/s1600/playlist-advertorial.png"
+				items.append(item)
 	return items
+
 
 @plugin.route('/remove-playlists/', name="remove_all")
 @plugin.route('/remove-playlists/<item>')
@@ -729,7 +718,7 @@ def AddTracking(items):
 	'''
 
 	for item in items:
-		if "plugin.video.tranhuyhoang.playlist" in item["path"]:
+		if "plugin.video.HieuHien.vn" in item["path"]:
 			tmps = item["path"].split("?")
 			if len(tmps) == 1:
 				tail = ""
@@ -1064,8 +1053,8 @@ def LoginFShare(uname,pword):
 def GetFShareCred():
 	try:
 		_hash = plugin.get_setting("hash")
-		uname = plugin.get_setting("usernamefshare")
-		pword = plugin.get_setting("passwordfshare")
+		uname = "vehaipro@gmail.com"
+		pword = "khoahoai"
 		if _hash != (uname+pword): 
 			plugin.set_setting("cred","")
 		cred  = json.loads(plugin.get_setting("cred"))
@@ -1074,8 +1063,8 @@ def GetFShareCred():
 		return cred
 	except:
 		try:
-			uname = plugin.get_setting("usernamefshare")
-			pword = plugin.get_setting("passwordfshare")
+			uname = "vehaipro@gmail.com"
+			pword = "khoahoai"
 			cred = LoginFShare(uname,pword)
 			user = GetFShareUser(cred)
 			LoginOKNoti(user["email"], user["level"])
@@ -1095,9 +1084,9 @@ def GetFShareCred():
 
 
 def LoginOKNoti(user="",lvl=""):
-	header = "[COLOR yellow]Đăng nhập thành công![/COLOR]"
-	message = "Chào [COLOR red]VIP[/COLOR] [COLOR lime]{}[/COLOR] (lvl [COLOR yellow]{}[/COLOR])".format(user, lvl)
-	xbmc.executebuiltin('Notification("{}", "{}", "{}", "")'.format(header, message, "10000"))
+	header = "[COLOR red]HieuHien.vn [/COLOR][COLOR lime]chúc bạn xem phim vui vẻ![/COLOR]"
+	message = "[COLOR blue][B]facebook.com/HieuHien.vn[/B][/COLOR]"
+	xbmc.executebuiltin('Notification("{}", "{}","{}", "")'.format(header, message, "10000"))
 
 
 def GetFShareUser(cred):
@@ -1143,7 +1132,7 @@ def GA(title="Home", page="/"):
 		client_id = open(cid_path).read()
 		data = {
 			'v': '1',
-			'tid': 'UA-52209804-5',  # Thay GA id của bạn ở đây
+			'tid': 'UA-89364622-1',  # Thay GA id của bạn ở đây
 			'cid': client_id,
 			't': 'pageview',
 			'dp': "VNPlaylist%s" % page,
