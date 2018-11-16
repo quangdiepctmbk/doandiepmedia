@@ -24,8 +24,8 @@ addons_folder = xbmc.translatePath('special://home/addons')
 image = xbmc.translatePath(os.path.join(path, "icon.png"))
 
 plugin = Plugin()
-addon = xbmcaddon.Addon("plugin.video.doandiep.vnplaylist")
-pluginrootpath = "plugin://plugin.video.doandiep.vnplaylist"
+addon = xbmcaddon.Addon("plugin.video.thongld.vnplaylist")
+pluginrootpath = "plugin://plugin.video.thongld.vnplaylist"
 http = httplib2.Http(cache, disable_ssl_certificate_validation=True)
 query_url = "https://docs.google.com/spreadsheets/d/{sid}/gviz/tq?gid={gid}&headers=1&tq={tq}"
 sheet_headers = {
@@ -35,7 +35,7 @@ sheet_headers = {
 
 
 def GetSheetIDFromSettings():
-	sid = "1WLEbNUt65Rv_gDPJ57N_pKxl49OoY2Y5TI8q0CZQYro"
+	sid = "1zL6Kw4ZGoNcIuW9TAlHWZrNIJbDU5xHTtz-o8vpoJss"
 	resp, content = http.request(plugin.get_setting("GSheetURL"), "HEAD")
 	try:
 		sid = re.compile("/d/(.+?)/").findall(resp["content-location"])[0]
@@ -175,9 +175,9 @@ def getItems(url_path="0", tq="select A,B,C,D,E"):
 		if "plugin://" in item["path"]:
 			if "install-repo" in item["path"]:
 				item["is_playable"] = False
-			elif re.search("plugin.video.doandiep.vnplaylist/(.+?)/.+?\://", item["path"]):
+			elif re.search("plugin.video.thongld.vnplaylist/(.+?)/.+?\://", item["path"]):
 				match = re.search(
-					"plugin.video.doandiep.vnplaylist(/.+?/).+?\://", item["path"])
+					"plugin.video.thongld.vnplaylist(/.+?/).+?\://", item["path"])
 				tmp = item["path"].split(match.group(1))
 				tmp[-1] = urllib.quote_plus(tmp[-1])
 				item["path"] = match.group(1).join(tmp)
@@ -730,7 +730,7 @@ def AddTracking(items):
 	'''
 
 	for item in items:
-		if "plugin.video.doandiep.vnplaylist" in item["path"]:
+		if "plugin.video.thongld.vnplaylist" in item["path"]:
 			tmps = item["path"].split("?")
 			if len(tmps) == 1:
 				tail = ""
