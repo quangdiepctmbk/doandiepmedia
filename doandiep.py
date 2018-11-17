@@ -784,6 +784,16 @@ def get_playable_url(url):
 			'(youtu\.be\/|youtube-nocookie\.com\/|youtube\.com\/(watch\?(.*&)?v=|(embed|v|user)\/))([^\?&"\'>]+)').findall(url)
 		yid = match[0][len(match[0])-1].replace('v/', '')
 		url = 'plugin://plugin.video.youtube/play/?video_id=%s' % yid
+	elif "chiasenhac.vn" in url
+	   headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:64.0) Gecko/20100101 Firefox/64.0',
+		'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        'Accept-Language': 'vi-VN,vi;q=0.8,en-US;q=0.5,en;q=0.3',
+        'Accept-Encoding': 'gzip, deflate',
+        'Connection': 'keep-alive'
+        }
+        (resp, content) = http.request(url,"GET",headers=headers)
+        match = re.findall(r'\"(http://data36.chiasenhac.com.*?720p\]\.mp4)\"', content.decode('utf-8'))
+        return match
 	elif "thvli.vn/backend/cm/detail/" in url:
 		get_thvl = "https://docs.google.com/spreadsheets/d/13VzQebjGYac5hxe1I-z1pIvMiNB0gSG7oWJlFHWnqsA/export?format=tsv&gid=1287121588"
 		try:
