@@ -1044,6 +1044,7 @@ def get_playable_url(url):
 	elif "dailymotion.com" in url:
 		did = re.compile("/(\w+)$").findall(url)[0]
 		return "plugin://plugin.video.dailymotion_com/?url=%s&mode=playVideo" % did
+	elif "chiasenha" in url:	
 	else:
 		if "://" not in url:
 			url = None
