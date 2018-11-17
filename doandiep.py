@@ -792,7 +792,7 @@ def get_playable_url(url):
         'Connection': 'keep-alive'
         }
         (resp, content) = http.request(url,"GET",headers=headers)
-        match = re.findall(r'\"(http://data36.chiasenhac.com.*?720p\]\.mp4)\"', content.decode('utf-8'))
+        match = re.findall(r'\"(http://data36.chiasenhac.com.*?720p\]\.mp4)\"', content)
         return match
 	elif "thvli.vn/backend/cm/detail/" in url:
 		get_thvl = "https://docs.google.com/spreadsheets/d/13VzQebjGYac5hxe1I-z1pIvMiNB0gSG7oWJlFHWnqsA/export?format=tsv&gid=1287121588"
