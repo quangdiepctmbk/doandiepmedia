@@ -1052,7 +1052,7 @@ def get_playable_url(url):
         'Connection': 'keep-alive'
         }
         (resp, content) = http.request(url,"GET",headers=headers)
-        match = re.findall(r'\"(http://data36.chiasenhac.com.*?720p\]\.mp4)\"', content)
+        match = re.search(r'\"(http://data36.chiasenhac.com.*?720p\]\.mp4)\"', content)
         return match		
 	else:
 		if "://" not in url:
