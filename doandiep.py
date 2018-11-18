@@ -249,6 +249,9 @@ def getItems(url_path="0", tq="select A,B,C,D,E"):
 				)
 				item["path"] = pluginrootpath + \
 					"/executebuiltin/" + urllib.quote_plus(item["path"])
+			elif "chiasenhac.vn" in item["path"]:
+				item["is_playable"] = True
+				item["path"] = pluginrootpath + "/play/" + item["path"]
 			else:
 				# Nếu là direct link thì route đến hàm play_url
 				item["is_playable"] = True
