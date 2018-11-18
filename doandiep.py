@@ -1044,6 +1044,17 @@ def get_playable_url(url):
 	elif "dailymotion.com" in url:
 		did = re.compile("/(\w+)$").findall(url)[0]
 		return "plugin://plugin.video.dailymotion_com/?url=%s&mode=playVideo" % did
+	elif "http://chiasenhac.vn/" in url:
+	  play_url = ""
+	   headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:64.0) Gecko/20100101 Firefox/64.0',
+		'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        'Accept-Language': 'vi-VN,vi;q=0.8,en-US;q=0.5,en;q=0.3',
+        'Accept-Encoding': 'gzip, deflate',
+        'Connection': 'keep-alive'
+        }
+        (resp, content) = http.request(url,"GET",headers=headers)
+        play_url = re.findall(r'\"(http://data36.chiasenhac.com.*?720p\]\.mp4)\"', content)
+        return play_url		
 	else:
 		if "://" not in url:
 			url = None
