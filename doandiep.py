@@ -1045,12 +1045,9 @@ def get_playable_url(url):
 		did = re.compile("/(\w+)$").findall(url)[0]
 		return "plugin://plugin.video.dailymotion_com/?url=%s&mode=playVideo" % did
 	elif "chiasenhac" in url:
-	   url = urllib.parse.unquote_plus(url)
+	   #url = urllib.parse.unquote_plus(url)
 	   headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:64.0) Gecko/20100101 Firefox/64.0',
-		'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-        'Accept-Language': 'vi-VN,vi;q=0.8,en-US;q=0.5,en;q=0.3',
-        'Accept-Encoding': 'gzip, deflate',
-        'Connection': 'keep-alive'
+        'Accept-Encoding': 'gzip, deflate'
         }
         (resp, content) = http.request(url,"GET",headers=headers)
         url = re.findall(r'\"(http://data36.chiasenhac.com.*?720p\]\.mp4)\"', content)
