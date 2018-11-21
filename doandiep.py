@@ -1054,7 +1054,7 @@ def get_playable_url(url):
 		}
 		(resp,content) = http.request(url,"GET",headers=headers)
 		#match = re.findall(r'\"(http://data36.chiasenhac.com.*?720p\]\.mp4)\"', content.decode('utf-8'))
-		match = "http://data36.chiasenhac.com/downloads/1966/3/1965641-57b4cabe/m4a/Dap%20Mo%20Cuoc%20Tinh%20-%20Dan%20Nguyen_%20Quang%20Le_ [MP4 HD 720p].mp4"
+		match = 'http://data36.chiasenhac.com/downloads/1966/3/1965641-57b4cabe/m4a/Dap%20Mo%20Cuoc%20Tinh%20-%20Dan%20Nguyen_%20Quang%20Le_ [MP4 HD 720p].mp4'
 		return match
 	else:
 		if "://" not in url:
