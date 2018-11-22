@@ -762,7 +762,7 @@ def execbuiltin(path, tracking_string=""):
 def play_url(url, title=""):
 	GA("Play [%s]" % title, "/play/%s/%s" % (title, url))
 	url = get_playable_url(url)
-	item = xbmcgui.ListItem(path=link, thumbnailImage=xbmc.getInfoLabel("ListItem.Art(thumb)"))
+	item = xbmcgui.ListItem(path=url, thumbnailImage=xbmc.getInfoLabel("ListItem.Art(thumb)"))
 	xbmcplugin.setResolvedUrl(HANDLE, True, item)
 	#Hack for some buggy redirect link
 	#try:
