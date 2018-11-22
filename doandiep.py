@@ -15,7 +15,8 @@ import thread
 from datetime import datetime
 # Tham khảo xbmcswift2 framework cho kodi addon tại
 # http://xbmcswift2.readthedocs.io/en/latest/
-from kodiswift import Plugin, xbmc, xbmcaddon, xbmcgui, actions
+#from kodiswift import Plugin, xbmc, xbmcaddon, xbmcgui, actions
+import xbmc,xbmcplugin,xbmcgui,xbmcaddon
 path = xbmc.translatePath(
 	xbmcaddon.Addon().getAddonInfo('path')).decode("utf-8")
 cache = xbmc.translatePath(os.path.join(path, ".cache"))
