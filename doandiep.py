@@ -764,7 +764,7 @@ def play_url(url, title=""):
 	url = get_playable_url(url)
 	#item = xbmcgui.ListItem(path=url, thumbnailImage=xbmc.getInfoLabel("ListItem.Art(thumb)"))
 	#xbmcplugin.setResolvedUrl(HANDLE, True, item)
-	Hack for some buggy redirect link
+	#Hack for some buggy redirect link
 	try:
 		http = httplib2.Http(disable_ssl_certificate_validation=True)
 		http.follow_redirects = True
