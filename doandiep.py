@@ -1050,7 +1050,7 @@ def get_playable_url(url):
 		'Accept-Encoding': 'gzip, deflate'
 		}
 		(resp, content) = http.request(url,"GET",headers=headers)
-		match = re.findall(r'\"(http://data36.chiasenhac.com.*?720p\]\.mp4)\"', content.decode('utf-8'))
+		match = re.findall(r'\"(http://data36.chiasenhac.com.*?080p\]\.mp4)\"', content.decode('utf-8'))
 		return match[0]
 	else:
 		if "://" not in url:
