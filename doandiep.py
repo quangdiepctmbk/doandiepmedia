@@ -12,7 +12,6 @@ import random
 import base64
 import time
 import thread
-import urlfetch
 from datetime import datetime
 # Tham khảo xbmcswift2 framework cho kodi addon tại
 # http://xbmcswift2.readthedocs.io/en/latest/
@@ -1050,9 +1049,9 @@ def get_playable_url(url):
 		headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:64.0) Gecko/20100101 Firefox/64.0',
 		'Accept-Encoding': 'gzip, deflate'
 		}
-		#(resp, content) = http.request(url,"GET",headers=headers)
-		response = urlfetch.get(url, headers=headers)
-		match = re.findall(r'\"(http.*?chiasenhac.com.*?720p\]\.mp4)\"', response.body.decode('utf-8'))
+		(resp, content) = http.request(url,"GET",headers=headers)
+		#response = urlfetch.get(url, headers=headers)
+		match = re.findall(r'\"(http.*?chiasenhac.com.*?720p\]\.mp4)\"', content.decode('utf-8'))
 		match = match[0].replace(" ","%20")
 		return match
 	else:
