@@ -1051,7 +1051,8 @@ def get_playable_url(url):
 		}
 		(resp, content) = http.request(url,"GET",headers=headers)
 		match = re.findall(r'\"(http://data36.chiasenhac.com.*?080p\]\.mp4)\"', content.decode('utf-8'))
-		return match[0]
+		match = match[0].replace(" ","%20")
+		return match
 	else:
 		if "://" not in url:
 			url = None
