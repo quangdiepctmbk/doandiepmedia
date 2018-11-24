@@ -1045,7 +1045,7 @@ def get_playable_url(url):
 		did = re.compile("/(\w+)$").findall(url)[0]
 		return "plugin://plugin.video.dailymotion_com/?url=%s&mode=playVideo" % did
 	elif "chiasenhac.vn" in url:
-		#url ='http://chiasenhac.vn/nhac-hot/dap-mo-cuoc-tinh~dan-nguyen-quang-le-bang-kieu~tsvbvm6vqq28k2.html'
+		url ='http://mp3.chiasenhac.vn/hd/video/v-video/xin-goi-nhau-la-co-nhan~bang-kieu-quang-le-dan-nguyen~tsvt0mz6qfn81k.html'
 		headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:64.0) Gecko/20100101 Firefox/64.0',
 		'Accept-Encoding': 'gzip, deflate'
 		}
