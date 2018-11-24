@@ -1050,7 +1050,7 @@ def get_playable_url(url):
 		'Accept-Encoding': 'gzip, deflate'
 		}
 		(resp, content) = http.request(url,"GET",headers=headers)
-		match = re.findall(r'\"(http.*?chiasenhac.com.*?080p\]\.mp4)\"', response.body.decode('utf-8'))
+		match = re.findall(r'\"(http.*?chiasenhac.com.*?720p\]\.mp4)\"', response.body.decode('utf-8'))
 		match = match[0].replace(" ","%20")
 		return match
 	else:
