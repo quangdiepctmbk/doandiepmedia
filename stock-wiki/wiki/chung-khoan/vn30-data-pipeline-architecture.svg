@@ -1,0 +1,180 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1050" viewBox="0 0 1600 1050">
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#222"/>
+    </marker>
+    <style>
+      .title{font:700 34px Arial,sans-serif;fill:#111}
+      .subtitle{font:400 18px Arial,sans-serif;fill:#444}
+      .lane-title{font:700 22px Arial,sans-serif;fill:#111}
+      .box-title{font:700 18px Arial,sans-serif;fill:#111}
+      .box-text{font:400 15px Arial,sans-serif;fill:#222}
+      .small{font:400 13px Arial,sans-serif;fill:#333}
+      .box{stroke:#222;stroke-width:2;rx:18;ry:18}
+      .arrow{stroke:#222;stroke-width:2.5;fill:none;marker-end:url(#arrow)}
+      .dash{stroke:#555;stroke-width:2;stroke-dasharray:7 6;fill:none;marker-end:url(#arrow)}
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="1600" height="1050" fill="#ffffff"/>
+  <text x="60" y="55" class="title">VN30 Data Pipeline chuẩn cho phân tích định lượng</text>
+  <text x="60" y="85" class="subtitle">Mục tiêu: một schema chung cho mọi mã VN30, hỗ trợ phân tích từng mã, cross-section model, backtest và governance</text>
+
+  <!-- Lanes -->
+  <rect x="45" y="120" width="1510" height="135" fill="#e7f5ff" stroke="#74c0fc" stroke-width="2" rx="20"/>
+  <rect x="45" y="285" width="1510" height="155" fill="#fff4e6" stroke="#ffa94d" stroke-width="2" rx="20"/>
+  <rect x="45" y="470" width="1510" height="165" fill="#e6fcf5" stroke="#63e6be" stroke-width="2" rx="20"/>
+  <rect x="45" y="665" width="1510" height="150" fill="#f3f0ff" stroke="#b197fc" stroke-width="2" rx="20"/>
+  <rect x="45" y="845" width="1510" height="145" fill="#ebfbee" stroke="#69db7c" stroke-width="2" rx="20"/>
+
+  <text x="70" y="150" class="lane-title">1. RAW INPUT SOURCES</text>
+  <text x="70" y="315" class="lane-title">2. STANDARDIZED LAYER</text>
+  <text x="70" y="500" class="lane-title">3. FEATURE LAYER</text>
+  <text x="70" y="695" class="lane-title">4. MODEL-READY PANEL</text>
+  <text x="70" y="875" class="lane-title">5. ANALYSIS / BACKTEST / GOVERNANCE</text>
+
+  <!-- Raw boxes -->
+  <rect class="box" x="230" y="150" width="190" height="75" fill="#a5d8ff"/>
+  <text x="250" y="178" class="box-title">OHLCV VN30</text>
+  <text x="250" y="203" class="box-text">open/high/low/close</text>
+  <text x="250" y="222" class="box-text">volume/value</text>
+
+  <rect class="box" x="455" y="150" width="190" height="75" fill="#a5d8ff"/>
+  <text x="475" y="178" class="box-title">Index data</text>
+  <text x="475" y="203" class="box-text">VNINDEX, VN30</text>
+  <text x="475" y="222" class="box-text">VNMID, VNSMALL</text>
+
+  <rect class="box" x="680" y="150" width="210" height="75" fill="#a5d8ff"/>
+  <text x="700" y="178" class="box-title">Fundamentals</text>
+  <text x="700" y="203" class="box-text">BCTC quarterly</text>
+  <text x="700" y="222" class="box-text">publish_date mandatory</text>
+
+  <rect class="box" x="925" y="150" width="190" height="75" fill="#a5d8ff"/>
+  <text x="945" y="178" class="box-title">Macro</text>
+  <text x="945" y="203" class="box-text">CPI, GDP, rates</text>
+  <text x="945" y="222" class="box-text">USD/VND, PMI</text>
+
+  <rect class="box" x="1150" y="150" width="220" height="75" fill="#a5d8ff"/>
+  <text x="1170" y="178" class="box-title">Sector / Flow</text>
+  <text x="1170" y="203" class="box-text">bank, steel, retail...</text>
+  <text x="1170" y="222" class="box-text">foreign flow, room</text>
+
+  <!-- Standardized boxes -->
+  <rect class="box" x="185" y="335" width="220" height="75" fill="#ffd8a8"/>
+  <text x="205" y="363" class="box-title">vn30_universe</text>
+  <text x="205" y="388" class="box-text">symbol, sector, industry</text>
+  <text x="205" y="407" class="box-text">membership history</text>
+
+  <rect class="box" x="435" y="335" width="220" height="75" fill="#ffd8a8"/>
+  <text x="455" y="363" class="box-title">prices_daily</text>
+  <text x="455" y="388" class="box-text">date, symbol, OHLCV</text>
+  <text x="455" y="407" class="box-text">adjusted_close, factor</text>
+
+  <rect class="box" x="685" y="335" width="240" height="75" fill="#ffd8a8"/>
+  <text x="705" y="363" class="box-title">fundamentals_quarterly</text>
+  <text x="705" y="388" class="box-text">EPS, BVPS, ROE, ROA</text>
+  <text x="705" y="407" class="box-text">period_end + publish_date</text>
+
+  <rect class="box" x="955" y="335" width="220" height="75" fill="#ffd8a8"/>
+  <text x="975" y="363" class="box-title">macro_long</text>
+  <text x="975" y="388" class="box-text">date, indicator, value</text>
+  <text x="975" y="407" class="box-text">frequency, publish_date</text>
+
+  <rect class="box" x="1205" y="335" width="220" height="75" fill="#ffd8a8"/>
+  <text x="1225" y="363" class="box-title">sector_specific</text>
+  <text x="1225" y="388" class="box-text">long format metrics</text>
+  <text x="1225" y="407" class="box-text">sector plugins</text>
+
+  <!-- Feature boxes -->
+  <rect class="box" x="170" y="525" width="230" height="82" fill="#c3fae8"/>
+  <text x="190" y="553" class="box-title">Price-volume features</text>
+  <text x="190" y="578" class="box-text">ret_1d/5d/21d/63d</text>
+  <text x="190" y="597" class="box-text">volatility, RSI, beta</text>
+
+  <rect class="box" x="430" y="525" width="230" height="82" fill="#c3fae8"/>
+  <text x="450" y="553" class="box-title">Fundamental features</text>
+  <text x="450" y="578" class="box-text">growth, margin, ROE</text>
+  <text x="450" y="597" class="box-text">D/E, valuation ranks</text>
+
+  <rect class="box" x="690" y="525" width="230" height="82" fill="#c3fae8"/>
+  <text x="710" y="553" class="box-title">Macro features</text>
+  <text x="710" y="578" class="box-text">rate cycle, CPI, FX</text>
+  <text x="710" y="597" class="box-text">market regime</text>
+
+  <rect class="box" x="950" y="525" width="230" height="82" fill="#c3fae8"/>
+  <text x="970" y="553" class="box-title">Sector features</text>
+  <text x="970" y="578" class="box-text">bank: NIM/NPL/CAR</text>
+  <text x="970" y="597" class="box-text">steel: HRC/coal...</text>
+
+  <rect class="box" x="1210" y="525" width="230" height="82" fill="#c3fae8"/>
+  <text x="1230" y="553" class="box-title">Target columns</text>
+  <text x="1230" y="578" class="box-text">fwd_ret_5d/21d/63d</text>
+  <text x="1230" y="597" class="box-text">fwd_excess, rank target</text>
+
+  <!-- Model-ready -->
+  <rect class="box" x="280" y="715" width="430" height="72" fill="#d0bfff"/>
+  <text x="310" y="745" class="box-title">vn30_panel_daily.parquet</text>
+  <text x="310" y="770" class="box-text">one row per (date, symbol), aligned calendar, no duplicates</text>
+
+  <rect class="box" x="850" y="715" width="430" height="72" fill="#d0bfff"/>
+  <text x="880" y="745" class="box-title">vn30_model_matrix.parquet</text>
+  <text x="880" y="770" class="box-text">features + targets, point-in-time safe, model-ready</text>
+
+  <!-- Analysis outputs -->
+  <rect class="box" x="110" y="900" width="220" height="65" fill="#b2f2bb"/>
+  <text x="130" y="928" class="box-title">Single-stock analysis</text>
+  <text x="130" y="952" class="box-text">VCB, FPT, HPG...</text>
+
+  <rect class="box" x="370" y="900" width="220" height="65" fill="#b2f2bb"/>
+  <text x="390" y="928" class="box-title">Cross-section model</text>
+  <text x="390" y="952" class="box-text">rank stocks in VN30</text>
+
+  <rect class="box" x="630" y="900" width="220" height="65" fill="#b2f2bb"/>
+  <text x="650" y="928" class="box-title">Backtest strategy</text>
+  <text x="650" y="952" class="box-text">weights, costs, risk</text>
+
+  <rect class="box" x="890" y="900" width="220" height="65" fill="#b2f2bb"/>
+  <text x="910" y="928" class="box-title">Portfolio / Risk</text>
+  <text x="910" y="952" class="box-text">HRP, VaR, stress</text>
+
+  <rect class="box" x="1150" y="900" width="240" height="65" fill="#b2f2bb"/>
+  <text x="1170" y="928" class="box-title">Monitoring / Governance</text>
+  <text x="1170" y="952" class="box-text">drift, rollout, circuit breakers</text>
+
+  <!-- Quality gate box -->
+  <rect class="box" x="60" y="730" width="170" height="52" fill="#fff3bf"/>
+  <text x="80" y="752" class="box-title">Quality gates</text>
+  <text x="80" y="773" class="small">no leakage, publish_date, adj factor</text>
+
+  <!-- Arrows raw to standardized -->
+  <path class="arrow" d="M325 225 C325 270 295 285 295 335"/>
+  <path class="arrow" d="M550 225 C550 270 545 285 545 335"/>
+  <path class="arrow" d="M785 225 C785 270 805 285 805 335"/>
+  <path class="arrow" d="M1020 225 C1020 270 1065 285 1065 335"/>
+  <path class="arrow" d="M1260 225 C1260 270 1315 285 1315 335"/>
+
+  <!-- Standardized to features -->
+  <path class="arrow" d="M545 410 C545 460 285 475 285 525"/>
+  <path class="arrow" d="M805 410 C805 460 545 475 545 525"/>
+  <path class="arrow" d="M1065 410 C1065 460 805 475 805 525"/>
+  <path class="arrow" d="M1315 410 C1315 460 1065 475 1065 525"/>
+  <path class="dash" d="M545 410 C620 465 1325 475 1325 525"/>
+
+  <!-- Features to model ready -->
+  <path class="arrow" d="M285 607 C285 650 495 670 495 715"/>
+  <path class="arrow" d="M545 607 C545 650 495 670 495 715"/>
+  <path class="arrow" d="M805 607 C805 650 1065 670 1065 715"/>
+  <path class="arrow" d="M1065 607 C1065 650 1065 670 1065 715"/>
+  <path class="arrow" d="M1325 607 C1325 650 1065 670 1065 715"/>
+  <path class="arrow" d="M710 750 L850 750"/>
+
+  <!-- model ready to outputs -->
+  <path class="arrow" d="M1065 787 C1065 850 220 850 220 900"/>
+  <path class="arrow" d="M1065 787 C1065 850 480 850 480 900"/>
+  <path class="arrow" d="M1065 787 C1065 850 740 850 740 900"/>
+  <path class="arrow" d="M1065 787 C1065 850 1000 850 1000 900"/>
+  <path class="arrow" d="M1065 787 C1065 850 1270 850 1270 900"/>
+
+  <path class="dash" d="M230 755 L280 755"/>
+  <text x="68" y="812" class="small">Gate trước modeling: missing &lt; 2%, không duplicate (date,symbol), target NaN chỉ ở cuối horizon</text>
+</svg>

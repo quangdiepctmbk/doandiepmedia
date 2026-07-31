@@ -1,0 +1,26 @@
+# Stock Wiki Export — .gitignore (cho repo kiến thức chứng khoán)
+# Mục đích: chặn file nhạy cảm/cá nhân, GIỮ LẠI toàn bộ kiến thức.
+
+# Secrets / personal config — KHÔNG push
+config.yaml
+
+# Personal outputs & discovery metadata
+outputs/
+.discoveries/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Obsidian vault config (user-specific)
+.obsidian/
+
+# Temp/scratch
+Untitled*
+*.base
+*.canvas
+screenshot-*.png
+scripts/*.log
+node_modules/
+.npm-cache/
