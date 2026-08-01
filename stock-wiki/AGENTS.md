@@ -12,7 +12,7 @@ Bạn đang làm việc với **kiến thức chứng khoán VN đã được h�
 7. `07-vcb-plan.md` — kế hoạch 8 phase VCB (khi làm VCB)
 8. `10-cafef-capabilities.md` — endpoint Cafef: khối ngoại, tự doanh (khi cần dòng vốn)
 9. `11-data-sources-matrix.md` — bảng phân vai nguồn dữ liệu (khi chọn nguồn)
-10. `12-interest-rate-source.md` — lãi suất NHTM: repo nghiencuulaisuat (khi cần lãi suất)
+10. `12-interest-rate-source.md` — 3 nguồn macro: lãi suất điều hành NHNN, lãi suất NHTM, CPI (khi cần macro)
 
 ## Ràng buộc bắt buộc (KHÔNG được vi phạm)
 

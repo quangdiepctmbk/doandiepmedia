@@ -16,7 +16,7 @@
 | 7 | **Khối ngoại theo mã** | **Cafef** `GDKhoiNgoai.ashx` | — | ✅ kiểm chứng |
 | 7b | **Tự doanh theo mã** | **Cafef** `GDTuDoanh.ashx` | — | ✅ kiểm chứng |
 | 7c | **Room ngoại** | **Cafef** GDKhoiNgoai (`RoomConLai`, `DangSoHuu`) | — | ✅ kiểm chứng |
-| 8 | Macro (CPI, lãi suất NHNN) | **NSO** (CPI, crawl được) + **SBV** (lãi suất điều hành, thủ công) + repo nghiencuulaisuat (lãi suất NHTM) | ⚠️ bán tự động |
+| 8 | Macro (CPI, lãi suất NHNN) | **NSO** (CPI crawl được) + **Google News RSS/báo chí** (lãi suất điều hành 4,5%) + repo nghiencuulaisuat (lãi suất NHTM) | ⚠️ bán tự động |
 
 ## Chi tiết endpoint Cafef (đã test thành công)
 
