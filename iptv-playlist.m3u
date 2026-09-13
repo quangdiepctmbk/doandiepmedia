@@ -1,4 +1,5 @@
 #EXTM3U
+#https://tinyurl.com/288mhzld
 
 #EXTINF:-1 tvg-id="bbc.earth" tvg-name="BBC Earth" tvg-logo="https://upload.wikimedia.org/wikipedia/en/thumb/7/72/BBC_Earth.svg/1200px-BBC_Earth.svg.png" group-title="Documentary",BBC Earth
 https://amg00793-amg00793c6-xumo-us-2669.playouts.now.amagi.tv/BBCStudios-BBCEarthA-hls/playlist.m3u8
@@ -11,3 +12,4 @@ https://amg00793-amg00793c6-xumo-us-2669.playouts.now.amagi.tv/BBCStudios-BBCEar
 
 #EXTINF:-1 tvg-id="abc.news" tvg-name="ABC News Live" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/ABC_News_2021.svg/1200px-ABC_News_2021.svg.png" group-title="News",ABC News Live (720p)
 https://abc-news-dmd-streams-1.akamaized.net/out/v1/701126012d044971b3fa89406a440133/index.m3u8
+
